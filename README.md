@@ -1,38 +1,93 @@
 # I18n::Object
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/i18n/object`. To experiment with that code, run `bin/console` for an interactive prompt.
+`I18n::Object` provides you can use wrapper classes for easy handling/testing of I18n by just only configuration.
 
-TODO: Delete this and the text above, and describe your gem
+## The Value of I18n::Object
+
+This gem resolves these problems:
+
+- It's not a easy to deal with deep nested YAML files from both product and test codes.
+- We need wrapper class for easy handling/testing of `I18n#translate` to **avoid TYPOs and translation missings**!!
+
+This `i18n-object` provides you can get to use wrapper classes just only assign namespaces in the initializer file:
+
+```ruby
+# config/initializers/i18n_object.rb
+I18n::Object.namespaces = %w[
+  notification
+  slack_notificaiton/admin
+  slack_notificaiton/consumer
+]
+```
+
+And you have to define YAML files on `config/locales` like this:
+
+```yaml
+en:
+  notification:
+    say: Hi, %{name}!
+  slack_notification:
+    admin:
+      say: Hi, admin!
+    consumer:
+      say: Hi, consumer!
+```
+
+Then you can use wrapper classes:
+
+```ruby
+Notificaiton.say(name: 'alice') # Hi, alice!
+SlackNotification::Admin.say # Hi, admin!
+SlackNotification::Consumer.say # Hi, consumer!
+Notification.hello # No Method Error
+```
+
+Finally you can get relief from **pain of TYPOs and translation missings**.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+1. Add `i18n-object` to your `Gemfile`:
 
 ```ruby
 gem 'i18n-object'
 ```
 
-And then execute:
+2. Execute this command to generate an initializer:
 
-    $ bundle
+```
+$ bin/rails generate i18n:object:install
+```
 
-Or install it yourself as:
+3. Assign namespaces and prepare locale files:
 
-    $ gem install i18n-object
+```ruby
+# Assign I18n Object names:
+#
+# e.g.)
+#
+# I18n::Object.namespaces = %w[
+#   notification
+#   slack_notificaiton/admin
+#   slack_notificaiton/consumer
+# ]
+#
+# en:
+#   notification:
+#     say: Hi, %{name}!
+#   slack_notification:
+#     admin:
+#       say: Hi, admin!
+#     consumer:
+#       say: Hi, consumer!
+#
+# Notificaiton.say(name: 'alice') # Hi, alice!
+# Notification.hello # NoMethodError
+# SlackNotification::Admin.say # Hi, admin!
+# SlackNotification::Consumer.say # Hi, consumer!
 
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/yhirano55/i18n-object.
+I18n::Object.namespaces = %w[
+]
+```
 
 ## License
 

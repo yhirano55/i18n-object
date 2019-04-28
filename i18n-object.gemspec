@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.authors       = ["Yoshiyuki Hirano"]
   s.email         = ["yhirano@me.com"]
   s.homepage      = "https://github.com/yhirano55/i18n-object"
-  s.summary       = "Definable I18n objects for easy handing/testing of I18n#translate"
+  s.summary       = "I18n::Object provides you can get to use wrapper classes for easy handling/testing of I18n by just only configuration."
   s.description   = s.summary
   s.license       = "MIT"
   s.files         = Dir.chdir(File.expand_path(".", __dir__)) do

@@ -1,0 +1,26 @@
+# Assign I18n Object names:
+#
+# e.g.)
+#
+# I18n::Object.namespaces = %w[
+#   notification
+#   slack_notificaiton/admin
+#   slack_notificaiton/consumer
+# ]
+#
+# en:
+#   notification:
+#     say: Hi, %{name}!
+#   slack_notification:
+#     admin:
+#       say: Hi, admin!
+#     consumer:
+#       say: Hi, consumer!
+#
+# Notificaiton.say(name: 'alice') # Hi, alice!
+# Notification.hello # NoMethodError
+# SlackNotification::Admin.say # Hi, admin!
+# SlackNotification::Consumer.say # Hi, consumer!
+
+I18n::Object.namespaces = %w[
+]

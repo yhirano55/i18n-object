@@ -1,0 +1,5 @@
+Description:
+  Copies the necessary file to get you up and runnning with I18n::Object gem
+
+Examples:
+  rails generate i18n:object:install
