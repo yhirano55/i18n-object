@@ -7,7 +7,7 @@ module I18n
         config.after_initialize do
           require "i18n/object/translation_methods"
 
-          ::I18n::Object.namespaces.each do |namespace|
+          Array(::I18n::Object.namespaces).each do |namespace|
             class_name = namespace.classify
 
             parent_object = ::Object

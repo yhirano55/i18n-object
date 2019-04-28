@@ -12,11 +12,7 @@ require "i18n"
 module I18n
   module Object
     class << self
-      attr_writer :namespaces
-
-      def namespaces
-        @namespaces = []
-      end
+      attr_accessor :namespaces
     end
   end
 end
