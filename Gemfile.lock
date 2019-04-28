@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    i18n-object (0.1.4)
+    i18n-object (0.1.5)
       activesupport (>= 5.0)
       i18n
 
